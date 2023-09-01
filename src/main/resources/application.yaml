@@ -1,0 +1,16 @@
+server:
+  port: 7070
+
+data:
+  customer:
+    count: 30
+    card:
+      max-card-count: 3
+      min-amount: 0
+      max-amount: 500000
+  good:
+    count: 100
+    max-price: 100000.00
+    min-price: 100.00
+  issuing_point:
+    count: 15

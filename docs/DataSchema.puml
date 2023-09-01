@@ -1,0 +1,57 @@
+@startuml
+class customer {
+.. columns ..
+{field} -user_id uuid PRIMARY KEY UNIQUE NOT NULL,
+{field} +user_name varchar(30) UNIQUE NOT NULL,
+{field} +user_password varchar(20) NOT NULL,
+{field} +email varchar(30) UNIQUE
+}
+
+class card {
+.. columns ..
+{field} -card_id bigserial PRIMARY KEY UNIQUE NOT NULL,
+{field} #user_id uuid UNIQUE NOT NULL,
+{field} +card_number varchar(16) NOT NULL,
+{field} +card_amount numeric(12,2) NOT NULL
+}
+
+class order_ {
+.. columns ..
+{field} -order_id bigserial PRIMARY KEY NOT NULL,
+{field} #card_id bigserial UNIQUE NOT NULL,
+{field} #issuing_point_id serial NOT NULL,
+{field} +order_amount numeric(6,2) NOT NULL,
+{field} +status DELIVERY_STATUS NOT NULL,
+{field} +purchase_time TIMESTAMP WITH TIME ZONE NOT NULL,
+{field} +delivery_time TIMESTAMP WITH TIME ZONE,
+{field} +issuing_time TIMESTAMP WITH TIME ZONE
+}
+
+class issuing_point {
+.. columns ..
+{field} -issuing_point_id serial PRIMARY KEY NOT NULL,
+{field} +address varchar(50) NOT NULL,
+{field} +owner varchar(30),
+{field} +work_shedule varchar(20)
+}
+
+class good {
+.. columns ..
+{field} -good_id bigserial PRIMARY KEY NOT NULL,
+{field} +good_name varchar(30) NOT NULL,
+{field} +good_price float(10) NOT NULL
+}
+
+class order_details {
+.. columns ..
+{field} -order_id bigserial PRIMARY KEY NOT NULL,
+{field} -good_id bigserial PRIMARY KEY NOT NULL,
+{field} +goods_count int NOT NULL
+}
+
+
+card "many" --* "1 " customer : by user_id
+order_ "many" --* "1 " card : by card_id
+order_ "many" --* "1 " issuing_point : by issuing_point_id
+order_ "many" *--* "many" good : by order_details table
+@enduml

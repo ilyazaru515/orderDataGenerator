@@ -102,7 +102,7 @@ definitions:
       owner:
         type: string
         maxLength: 30
-      work_shedule:
+      work_schedule:
         type: string
         maxLength: 20
     required:

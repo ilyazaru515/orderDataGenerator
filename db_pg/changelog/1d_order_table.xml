@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="lb-generated" id="order_table_01d_create">
+        <sql dbms="postgresql"
+             endDelimiter=";"
+             splitStatements="false"
+             stripComments="true">
+            CREATE TABLE orders.order (
+            order_id UUID PRIMARY KEY,
+            user_id UUID,
+            FOREIGN KEY (user_id) REFERENCES orders.customer (user_id));
+        </sql>
+    </changeSet>
+</databaseChangeLog>

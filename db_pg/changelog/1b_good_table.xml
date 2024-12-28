@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="lb-generated" id="good_table_01b_create">
+        <createTable schemaName="orders" tableName="good">
+            <column name="good_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="good_name" type="varchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="good_price" type="double">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey schemaName="orders" tableName="good" columnNames="good_id" constraintName="good_pk"/>
+    </changeSet>
+</databaseChangeLog>

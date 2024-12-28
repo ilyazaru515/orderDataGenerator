@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="lb-generated" id="order_history_table_01c_create">
+        <createTable schemaName="orders" tableName="order_history">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" />
+            </column>
+            <column name="operation" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="time" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="order_id" type="uuid">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addPrimaryKey schemaName="orders" tableName="order_history" columnNames="id" constraintName="order_history_pk"/>
+    </changeSet>
+</databaseChangeLog>

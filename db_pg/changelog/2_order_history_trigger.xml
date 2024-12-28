@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="lb-generated" id="order_table_02_create_order_history_trigger">
+        <sql dbms="postgresql"
+             endDelimiter=";"
+             splitStatements="false"
+             stripComments="true">
+            CREATE OR REPLACE FUNCTION log_order_change() RETURNS TRIGGER
+            LANGUAGE plpgsql
+	        AS $$
+                BEGIN
+                    IF (TG_OP = 'INSERT') THEN
+                        INSERT INTO orders.order_history(operation, time, order_id)
+                        VALUES(TG_OP,NOW(),NEW.order_id);
+                    ELSE
+						INSERT INTO orders.order_history(operation, time, order_id)
+						VALUES(TG_OP,NOW(),OLD.order_id);
+                    END IF;
+                RETURN NEW;
+                END;
+	        $$;
+
+            DROP TRIGGER IF EXISTS order_history_trigger ON orders.order;
+            CREATE TRIGGER order_history_trigger BEFORE INSERT OR UPDATE OR DELETE ON orders.order FOR EACH ROW EXECUTE PROCEDURE log_order_change();
+        </sql>
+    </changeSet>
+</databaseChangeLog>

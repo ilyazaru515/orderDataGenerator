@@ -3,8 +3,8 @@ server:
 
 data:
   customer:
-    count: 30
-  good:
     count: 100
+  good:
+    count: 400
     max-price: 100000.00
     min-price: 100.00

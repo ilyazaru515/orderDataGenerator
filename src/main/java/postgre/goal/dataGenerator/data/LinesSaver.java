@@ -15,21 +15,21 @@ import java.util.List;
 public class LinesSaver {
     private final FileReader fileReader;
     private final List<String> mansNames = new ArrayList<>();
-    private final List<String> womansNames = new ArrayList<>();
-    private final List<String> mails = new ArrayList<>();
-    private final List<String> cities = new ArrayList<>();
-    private final List<String> streets = new ArrayList<>();
-    private final List<String> individualBusinessmans = new ArrayList<>();
-    private final List<String> schedules = new ArrayList<>();
+    private final List<String> mansSurnames = new ArrayList<>();
+    private final List<String> mansPatronymics = new ArrayList<>();
+    private final List<String> womenNames = new ArrayList<>();
+    private final List<String> womenSurnames = new ArrayList<>();
+    private final List<String> womenPatronymics = new ArrayList<>();
+    private final List<String> goods = new ArrayList<>();
 
     @PostConstruct
     void readFiles() throws IOException {
         mansNames.addAll(fileReader.readFile("/files/MansNames.txt"));
-        womansNames.addAll(fileReader.readFile("/files/WomansNames.txt"));
-        mails.addAll(fileReader.readFile("files/mails.txt"));
-        cities.addAll(fileReader.readFile("files/cities.txt"));
-        streets.addAll(fileReader.readFile("files/streets.txt"));
-        individualBusinessmans.addAll(fileReader.readFile("files/individualBusinessman.txt"));
-        schedules.addAll(fileReader.readFile("files/schedules.txt"));
+        mansSurnames.addAll(fileReader.readFile("/files/MansSurnames.txt"));
+        mansPatronymics.addAll(fileReader.readFile("/files/MansPatronymics.txt"));
+        womenNames.addAll(fileReader.readFile("/files/WomenNames.txt"));
+        womenSurnames.addAll(fileReader.readFile("/files/WomenSurnames.txt"));
+        womenPatronymics.addAll(fileReader.readFile("/files/WomenPatronymics.txt"));
+        goods.addAll(fileReader.readFile("files/goods.txt"));
     }
 }

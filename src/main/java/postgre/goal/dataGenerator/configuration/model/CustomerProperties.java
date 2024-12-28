@@ -7,6 +7,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "data.customer")
-public class CustomerConfig {
+public class CustomerProperties {
     private Integer count;
 }
